@@ -11,7 +11,7 @@ var UserColName = "user"
 
 type userField struct {
 	Id            string
-	Code          string
+	OpenId        string
 	Name          string
 	AvatarUrl     string
 	Country       string
@@ -27,7 +27,7 @@ type userField struct {
 
 var UserField = userField{
 	Id:            "_id",
-	Code:          "code",
+	OpenId:        "openId",
 	Name:          "name",
 	AvatarUrl:     "AvatarUrl",
 	Country:       "country",
@@ -43,7 +43,7 @@ var UserField = userField{
 
 type User struct {
 	Id            bson.ObjectId `bson:"_id"`
-	Code          string        `bson:"code"`
+	OpenId        string        `bson:"openId"`
 	Name          string        `bson:"name"`
 	AvatarUrl     string        `bson:"avatarUrl"`
 	Country       string        `bson:"country"`
@@ -65,13 +65,13 @@ func CreateUser(user *User) (err error) {
 	return
 }
 
-func GetUserByCode(code string) (err error, user *User) {
+func GetUserByOpenId(openId string) (err error, user *User) {
 	mgoSession := mongodb.GetMongoSession()
 	defer mgoSession.Close()
 
 	collection := mgoSession.DB(mongodb.MongoConf.DB).C(UserColName)
 	user = new(User)
-	err = collection.Find(bson.M{UserField.Code: code}).One(&user)
+	err = collection.Find(bson.M{UserField.OpenId: openId}).One(&user)
 	return
 }
 

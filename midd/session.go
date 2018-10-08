@@ -1,7 +1,7 @@
 package midd
 
 import (
-	"T-future/model"
+	"Jtta/model"
 	"time"
 
 	"gopkg.in/mgo.v2/bson"

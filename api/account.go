@@ -1,9 +1,9 @@
 package api
 
 import (
-	"T-future/logic"
-	"T-future/midd"
-	"T-future/model"
+	"Jtta/logic"
+	"Jtta/midd"
+	"Jtta/model"
 	"fmt"
 	"net/http"
 
@@ -90,19 +90,9 @@ func registerUser(c *gin.Context) {
 }
 
 func loginUser(c *gin.Context) {
-	//校验用户密码是否正确
-	phone := c.PostForm("js_code")
-
-	uerr, user := model.GetUserByPhone(phone)
-	if uerr != nil {
-		c.JSON(http.StatusForbidden, accountErrorCode["userError"])
-		return
-	}
-	if user.Password != password {
-		c.JSON(http.StatusForbidden, accountErrorCode["userError"])
-		return
-	}
-
+	code := c.PostForm("js_code")
+	//根据code获取openId
+	openId, unionId, sessionKey := midd.wechat.GetOpenId(code)
 	//创建新session
 	cerr, configs := model.GetSysConfigs()
 	if cerr != nil {

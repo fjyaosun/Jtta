@@ -1,7 +1,7 @@
 package api
 
 import (
-	"T-future/model"
+	"Jtta/model"
 	"net/http"
 
 	"github.com/gin-gonic/gin"

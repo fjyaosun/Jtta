@@ -1,7 +1,7 @@
 package api
 
 import (
-	"T-future/midd"
+	"Jtta/midd"
 
 	"github.com/gin-gonic/gin"
 )
