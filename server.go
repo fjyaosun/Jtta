@@ -1,7 +1,7 @@
 package main
 
 import (
-	"T-future/api"
+	"Jtta/api"
 
 	"github.com/gin-gonic/gin"
 )

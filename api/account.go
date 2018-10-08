@@ -91,8 +91,7 @@ func registerUser(c *gin.Context) {
 
 func loginUser(c *gin.Context) {
 	//校验用户密码是否正确
-	phone := c.PostForm("phone")
-	password := c.PostForm("password")
+	phone := c.PostForm("js_code")
 
 	uerr, user := model.GetUserByPhone(phone)
 	if uerr != nil {
